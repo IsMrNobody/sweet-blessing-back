@@ -8,5 +8,5 @@ export const PAYPAL_API = process.env.PAYPAL_API
 export const PUBLIC_VAPID_KEY = process.env.PUBLIC_VAPID_KEY
 export const PRIVATE_VAPID_KEY = process.env.PRIVATE_VAPID_KEY
 
-export const PORT = 3001
+export const PORT = process.env.PORT || 3001
 export const HOST = process.env.HOST
