@@ -56,7 +56,7 @@ export const creatOrder = async (req, res) => {
 
         res.json(response.data)
     } catch (error) {
-        console.log('algo paso', error)
+        console.log('algo paso')
         return res.status(500).send('Somenthing wrong')
     }
 }
