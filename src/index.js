@@ -1,7 +1,6 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import { PORT } from "./config";
 
 import payment from "./routes/paymentRouts";
 // import webPushRouts from "./routes/webPushRouts";
@@ -15,5 +14,5 @@ app.use(cors())
 app.use(payment);
 // app.use(webPushRouts);
 
-app.listen(PORT);
-console.log("server on port", PORT)
+app.listen(process.env.PORT || 3001);
+console.log("server activo")
