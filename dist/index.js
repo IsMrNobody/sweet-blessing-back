@@ -1,10 +1,12 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const { conectDB } = require('./database/db')
 
 const payment = require('./routes/paymentRouts')
 // import webPushRouts from "./routes/webPushRouts";
 
+conectDB()
 const app = express();
 
 app.use(morgan('dev'))
