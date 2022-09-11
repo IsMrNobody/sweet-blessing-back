@@ -1,13 +1,7 @@
+const axios = require('axios')
+const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET, HOST } = require('../config')
 
-import axios from "axios";
-import {
-        PAYPAL_API,
-        PAYPAL_API_CLIENT,
-        PAYPAL_API_SECRET,
-        HOST
-       } from "../config";
-
-export const creatOrder = async (req, res) => {
+const creatOrder = async (req, res) => {
     const order = {
       intent: 'CAPTURE',
       purchase_units: [
@@ -62,7 +56,7 @@ export const creatOrder = async (req, res) => {
 }
 
 // procesando pago
-export const captureOrder = async (req, res) => {
+const captureOrder = async (req, res) => {
   const {token} = req.query
   const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {}, {
     auth: {
@@ -74,6 +68,12 @@ export const captureOrder = async (req, res) => {
   res.send('capturando orden')
 }
 
-export const cancelOrder = (req, res) => {
+const cancelOrder = (req, res) => {
     res.send('canceling order')
+}
+
+module.exports = {
+  creatOrder,
+  captureOrder,
+  cancelOrder
 }

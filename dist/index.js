@@ -1,8 +1,8 @@
-import express from "express";
-import morgan from "morgan";
-import cors from "cors";
+const express = require('express')
+const morgan = require('morgan')
+const cors = require('cors')
 
-import payment from "./routes/paymentRouts";
+const payment = require('./routes/paymentRouts')
 // import webPushRouts from "./routes/webPushRouts";
 
 const app = express();

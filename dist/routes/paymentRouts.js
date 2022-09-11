@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { creatOrder, captureOrder, cancelOrder } from "../controllers/paymemtController";
+const { Router } = require('express')
+const { creatOrder, captureOrder, cancelOrder } = require('../controllers/paymemtController')
 
 const router = Router()
 
@@ -9,4 +9,5 @@ router.get('/capture-order', captureOrder)
 
 router.get('/cancel-order', cancelOrder)
 
-export default router;
+// export default router;
+module.exports = router
