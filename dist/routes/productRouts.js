@@ -1,0 +1,47 @@
+const { Router } = require('express')
+const { 
+    createProduct,
+    getProducts,
+    getProductByUserId,
+    editProduct,
+    deleteProduct
+} = require('../controllers/productController')
+const router = Router()
+
+router.get('/', async (req, res) => {
+    const product = await getProducts()
+    res.status(201).json(product)
+    console.log('obteniendo inf....')
+})
+
+router.get('/:id', async (req, res) => {
+    const product = await getProductByUserId(req.params.id)
+    res.status(201).json(product)
+    console.log('obteniendo inf....>')
+})
+
+router.post("/create-product", async (req, res) => {
+    // console.log(req.body);
+    const product = await createProduct(req.body)
+    if(product){
+        res.status(201).json({data: product})
+    } else {
+        res.status(403).json('algo ocurre > ' + product)
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    const edit = await editProduct(req.params.id, req.body)
+    res.status(201).json(edit)
+})
+
+router.delete("/:id", async (req, res) => {
+    const product = await deleteProduct(req.params.id)
+    if(product === 'no existe') {
+        res.status(403).json('algo ocurre > ' + product)
+    } else {
+        res.status(201).json('eliminado')
+    }
+})
+
+module.exports = router

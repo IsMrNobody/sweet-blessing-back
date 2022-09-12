@@ -10,6 +10,7 @@ const PRIVATE_VAPID_KEY = process.env.PRIVATE_VAPID_KEY
 
 const PORT = process.env.PORT || 3001
 const HOST = process.env.HOST
+const URI = process.env.URI
 
 module.exports = {
     PAYPAL_API_CLIENT,
@@ -18,5 +19,6 @@ module.exports = {
     PUBLIC_VAPID_KEY,
     PRIVATE_VAPID_KEY,
     PORT,
-    HOST
+    HOST,
+    URI
   }
