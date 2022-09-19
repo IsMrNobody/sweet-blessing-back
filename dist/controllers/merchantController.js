@@ -23,7 +23,7 @@ const getMerchantById = (id) => {
 
 const editMerchant = async (id, data) => {
     try {
-        await local.findByIdAndUpdate(id, data)
+        await Local.findByIdAndUpdate(id, data)
         const merchantAct = Local.findById(id)
         return merchantAct
     } catch (error) {

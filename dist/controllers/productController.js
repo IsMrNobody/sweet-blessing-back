@@ -16,6 +16,11 @@ const getProducts = () => {
     return product
 }
 
+const getProductById = (id) => {
+    const product = Product.find({ _id: id })
+    return product
+}
+
 const getProductByUserId = (id) => {
     const product = Product.find({ userId: id })
     return product
@@ -47,5 +52,6 @@ module.exports = {
     getProducts,
     getProductByUserId,
     editProduct,
-    deleteProduct
+    deleteProduct,
+    getProductById
 }

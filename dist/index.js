@@ -14,6 +14,9 @@ app.use(express.json())
 app.use(cors())
 
 // app.use(payment);
+// app.use("/", (req, res) => {
+//     res.send('Bienvenido a Jartate-DB')
+// })
 app.use("/payment", require('./routes/paymentRouts'))
 app.use("/merchant", require('./routes/merchantRouts'))
 app.use("/product", require('./routes/productRouts'))
