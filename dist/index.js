@@ -20,6 +20,7 @@ app.use(cors())
 app.use("/payment", require('./routes/paymentRouts'))
 app.use("/merchant", require('./routes/merchantRouts'))
 app.use("/product", require('./routes/productRouts'))
+app.use("/order", require('./routes/orderRouts'))
 // app.use(webPushRouts);
 
 app.listen(process.env.PORT || 3001);
