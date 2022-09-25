@@ -9,9 +9,9 @@ const portion = new Schema({
 })
 
 const ProductSchema = new Schema({
-    name: { type: String, required: true },
+    name: String,
     active:{ type: Boolean, default: false },
-    userId: { required: true, type: String },
+    userId: String,
     description: String,
     price: Number,
     category: String,

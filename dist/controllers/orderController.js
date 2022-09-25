@@ -7,7 +7,8 @@ const createOrder = async (data) => {
         await order.save()
         return order
     } catch (error) {
-        console.log(error.message);
+        console.log(error.message)
+        return error.message
     }
 }
 
