@@ -2,12 +2,10 @@ const Order = require("../models/order")
 
 const createOrder = async (data) => {
     try {
-        console.log(data)
         const order = new Order(data)
         await order.save()
         return order
     } catch (error) {
-        console.log(error.message)
         return error.message
     }
 }
