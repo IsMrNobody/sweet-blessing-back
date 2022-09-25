@@ -64,9 +64,8 @@ const captureOrder = async (req, res) => {
       password: PAYPAL_API_SECRET
     }
   })
-  const data = response.data
   console.log(response.data)
-  return data, res.redirect('/')
+  return res.redirect('http://localhost:3000/store')
 }
 
 const cancelOrder = (req, res) => {
