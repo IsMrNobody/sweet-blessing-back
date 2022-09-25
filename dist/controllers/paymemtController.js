@@ -19,8 +19,8 @@ const creatOrder = async (req, res) => {
         brand_name: `sweet-jesus`,
         landing_page: 'NO_PREFERENCE',
         user_action: 'PAY_NOW',
-        return_url: `${HOST}/capture-order`,
-        cancel_url: `${HOST}/cancel-order`
+        return_url: `${HOST}/payment/capture-order`,
+        cancel_url: `${HOST}/payment/cancel-order`
       }
     };
 
@@ -64,8 +64,9 @@ const captureOrder = async (req, res) => {
       password: PAYPAL_API_SECRET
     }
   })
+  const data = response.data
   console.log(response.data)
-  res.send('capturando orden')
+  return data, res.redirect('/')
 }
 
 const cancelOrder = (req, res) => {
