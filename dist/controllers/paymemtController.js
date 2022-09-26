@@ -68,11 +68,11 @@ const captureOrder = async (req, res) => {
       password: PAYPAL_API_SECRET
     }
   })
-  const id = response.data.id
-  await Order.findByIdAndUpdate(id, data)
-  console.log('este es el ide de pago')
-  console.log(IdPago)
-  res.redirect(`http://localhost:3000/paid/${id}`)
+  // const id = response.data.id
+  const ordenPagada = await Order.findByIdAndUpdate(IdPago, {paid: true})
+  console.log('este es la orden paga')
+  console.log(ordenPagada)
+  res.redirect(`http://localhost:3000/paid/${ordenPagada}`)
 }
 
 const cancelOrder = (req, res) => {
