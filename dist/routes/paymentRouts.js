@@ -3,7 +3,13 @@ const { creatOrder, captureOrder, cancelOrder } = require('../controllers/paymem
 
 const router = Router()
 
-router.post('/create-order', creatOrder)
+// router.post('/create-order', creatOrder)
+
+router.post('/create-order', async (req, res) => {
+    const order =  await creatOrder(req.body)
+    // console.log(order)
+})
+
 
 router.get('/capture-order', captureOrder)
 

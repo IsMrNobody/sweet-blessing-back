@@ -1,7 +1,8 @@
 const axios = require('axios')
 const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET, HOST } = require('../config')
 
-const creatOrder = async (req, res) => {
+const creatOrder = async (req) => {
+    console.log('creando orden >', req)
     const order = {
       intent: 'CAPTURE',
       purchase_units: [
@@ -46,11 +47,11 @@ const creatOrder = async (req, res) => {
             Authorization: `Bearer ${access_token}`
         }
         })
-        // console.log(response.data)
 
-        res.json(response.data)
+        return response.data
+
     } catch (error) {
-        console.log('algo paso')
+        // console.log('algo paso', error)
         return res.status(500).send('Somenthing wrong')
     }
 }
@@ -64,12 +65,13 @@ const captureOrder = async (req, res) => {
       password: PAYPAL_API_SECRET
     }
   })
-  console.log(response.data)
-  return res.redirect('http://localhost:3000/store')
+  console.log('esta es request', req)
+  // const paid = Order.find()
+  res.send(response.data)
 }
 
 const cancelOrder = (req, res) => {
-    res.send('canceling order')
+  return res.redirect('')
 }
 
 module.exports = {

@@ -25,7 +25,8 @@ const ProductSchema = new Schema({
 const OrderSchema = new Schema({
     nameUser: { type: String, required: true },
     merchantId: String, 
-    active:{ type: Boolean, default: false },
+    active:{ type: Boolean, default: true },
+    paid: { type: Boolean, default: false },
     email: { required: true, type: String },
     address: String,
     comments: String,
