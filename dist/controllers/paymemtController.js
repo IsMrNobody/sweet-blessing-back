@@ -1,5 +1,8 @@
 const axios = require('axios')
+const Order = require("../models/order")
 const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET, HOST } = require('../config')
+
+let IdPago = ''
 
 const creatOrder = async (req, res) => {
     console.log('creando orden >', req)
@@ -48,9 +51,8 @@ const creatOrder = async (req, res) => {
           }
         })
         console.log(response.data)
-        // return response.data
+        IdPago = response.data.id
         res.send(response.data)
-
     } catch (error) {
         // console.log('algo paso', error)
         return error.message
@@ -67,6 +69,9 @@ const captureOrder = async (req, res) => {
     }
   })
   const id = response.data.id
+  // await Order.findByIdAndUpdate(id, data)
+  console.log('este es el ide de pago')
+  console.log(IdPago)
   res.redirect(`http://localhost:3000/paid/${id}`)
 }
 
@@ -74,8 +79,14 @@ const cancelOrder = (req, res) => {
   return res.redirect('/')
 }
 
+
+const paidOrder = (req, res) => {
+  const find = Order.find(o)
+}
+
 module.exports = {
   creatOrder,
   captureOrder,
-  cancelOrder
+  cancelOrder,
+  paidOrder
 }
