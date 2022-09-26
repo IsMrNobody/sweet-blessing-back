@@ -51,7 +51,7 @@ const creatOrder = async (req, res) => {
           }
         })
         console.log(response.data)
-        IdPago = response.data.id
+        IdPago = req.orderId
         res.send(response.data)
     } catch (error) {
         // console.log('algo paso', error)
@@ -69,7 +69,7 @@ const captureOrder = async (req, res) => {
     }
   })
   const id = response.data.id
-  // await Order.findByIdAndUpdate(id, data)
+  await Order.findByIdAndUpdate(id, data)
   console.log('este es el ide de pago')
   console.log(IdPago)
   res.redirect(`http://localhost:3000/paid/${id}`)
