@@ -6,7 +6,7 @@ const router = Router()
 // router.post('/create-order', creatOrder)
 
 router.post('/create-order', async (req, res) => {
-    await creatOrder(req.body)
+    await creatOrder(req.body, res)
 })
 
 
