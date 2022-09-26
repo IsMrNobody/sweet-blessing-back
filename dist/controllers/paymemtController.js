@@ -9,7 +9,7 @@ const creatOrder = async (req) => {
         {
           amount: {
             currency_code: "USD",
-            value: 1
+            value: req.total || 1
           },
           description: "Venta de postres",
           //   items: [],
@@ -43,16 +43,16 @@ const creatOrder = async (req) => {
 
         // enviar orden de pago
         const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
-        headers: {
+          headers: {
             Authorization: `Bearer ${access_token}`
-        }
+          }
         })
-
+        console.log(response.data)
         return response.data
 
     } catch (error) {
         // console.log('algo paso', error)
-        return res.status(500).send('Somenthing wrong')
+        return error.message
     }
 }
 
@@ -65,13 +65,12 @@ const captureOrder = async (req, res) => {
       password: PAYPAL_API_SECRET
     }
   })
-  console.log('esta es request', req)
-  // const paid = Order.find()
-  res.send(response.data)
+  const id = response.data.id
+  res.redirect(`http://localhost:3000/paid/${id}`)
 }
 
 const cancelOrder = (req, res) => {
-  return res.redirect('')
+  return res.redirect('/')
 }
 
 module.exports = {
