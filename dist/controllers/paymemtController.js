@@ -1,7 +1,7 @@
 const axios = require('axios')
 const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET, HOST } = require('../config')
 
-const creatOrder = async (req) => {
+const creatOrder = async (req, res) => {
     console.log('creando orden >', req)
     const order = {
       intent: 'CAPTURE',
@@ -48,7 +48,8 @@ const creatOrder = async (req) => {
           }
         })
         console.log(response.data)
-        return response.data
+        // return response.data
+        res.send(response.data)
 
     } catch (error) {
         // console.log('algo paso', error)
