@@ -72,7 +72,7 @@ const captureOrder = async (req, res) => {
   const ordenPagada = await Order.findByIdAndUpdate(IdPago, {paid: true})
   console.log('este es la orden paga')
   console.log(ordenPagada)
-  res.redirect(`http://localhost:3000/paid/${ordenPagada}`)
+  res.redirect(`http://localhost:3000/paid/${IdPago}`)
 }
 
 const cancelOrder = (req, res) => {
