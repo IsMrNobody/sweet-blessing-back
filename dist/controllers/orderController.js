@@ -3,20 +3,17 @@ const { mensaje } = require('../whatsapp/msg')
 const { getMerchantById } = require("./merchantController")
 
 const createOrder = async (data) => {
-    // console.log(data)
     try {
         // enviar orden
         const order = new Order(data)
         await order.save()
+        
         // enviar mensaje
-        const merchant = await getMerchantById(data.merchantId)
         const textMsg = {
             userName: data.nameUser,
             userPhone: data.phone,
-            merchantPhone: merchant.phone
+            merchantPhone: data.merchantPhone
         }
-        console.log(textMsg)
-
         await mensaje(textMsg)
         return order
     } catch (error) {
