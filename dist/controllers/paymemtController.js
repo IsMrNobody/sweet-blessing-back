@@ -79,14 +79,8 @@ const cancelOrder = (req, res) => {
   return res.redirect('/')
 }
 
-
-const paidOrder = (req, res) => {
-  const find = Order.find(o)
-}
-
 module.exports = {
   creatOrder,
   captureOrder,
-  cancelOrder,
-  paidOrder
+  cancelOrder
 }

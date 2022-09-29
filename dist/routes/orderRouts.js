@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createOrder, getOrders, getByMerchantId, deleteOrder } = require('../controllers/orderController')
+const { createOrder, getOrders, getByMerchantId, deleteOrder, getOrderById } = require('../controllers/orderController')
 const router = Router()
 
 router.get('/', async (req, res) => {
@@ -14,8 +14,13 @@ router.get('/:id', async (req, res) => {
     console.log('obteniendo inf....')
 })
 
+router.get('/user/:id', async (req, res) => {
+    const order = await getOrderById(req.params.id)
+    res.status(201).json(order)
+    console.log('obteniendo inf....')
+})
+
 router.post("/create", async (req, res) => {
-    // console.log(req.body);
     const order = await createOrder(req.body)
     if(order){
         res.status(201).json({data: order})
