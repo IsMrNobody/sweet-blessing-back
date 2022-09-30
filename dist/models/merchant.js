@@ -5,7 +5,8 @@ const localSchema = new Schema({
     name: { type: String, required: true, unique: true, trim: true },
     active:{ type: Boolean, default: false },
     description: { type: String, required: true },
-    phone: Number
+    phone: Number,
+    pass: String
 },
 {
     versionKey: false

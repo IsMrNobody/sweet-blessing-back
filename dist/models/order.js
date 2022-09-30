@@ -26,6 +26,7 @@ const OrderSchema = new Schema({
     nameUser: { type: String, required: true },
     merchantId: String, 
     active:{ type: Boolean, default: true },
+    status: { type: String, default: 'Pendiente' },
     paid: { type: Boolean, default: false },
     email: { required: true, type: String },
     address: String,
