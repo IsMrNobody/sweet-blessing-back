@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { TOKEN_ADMIN } = require('../config')
 
 const mensaje = async (payload) => {
   // reaccion mensaje
@@ -52,15 +53,15 @@ const mensaje = async (payload) => {
           "parameters": [
             {
               "type": "text",
-              "text": payload.userName
+              "text": `${payload.userName}`
             },
             {
               "type": "text",
-              "text": payload.total
+              "text": `${payload.total}  💸`
             },
             {
               "type": "text",
-              "text": payload.userPhone
+              "text": `${payload.userPhone}`
             }
           ]
         }
@@ -71,7 +72,7 @@ const mensaje = async (payload) => {
     const enviar = await axios.post('https://graph.facebook.com/v14.0/105724882310760/messages', data, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer EAAFCoKVgWGIBAKns4bp3PcGD6ZCAjZBCxCKhcqjA6B3HOd4hk4ZCCgcWP3dzEDXYTsLqz1uJnjJhwfR012grKxEUVTJOVwBdWcWz29YlSRaAZCU2lMNpyrC4InNPJWFxi4wrDM3llcntZCWH5Iid9jtsbV9U8ouTLZACoPuNcvMZAPpxTpESxKC`
+        Authorization: `Bearer ${TOKEN_ADMIN}`
       }
     })
   } catch (error) {

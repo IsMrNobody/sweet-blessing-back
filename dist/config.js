@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 3001
 const HOST = process.env.HOST
 const URI = process.env.URI
 
+const TOKEN_ADMIN = process.env.TOKEN_ADMIN
+
 module.exports = {
     PAYPAL_API_CLIENT,
     PAYPAL_API_SECRET,
@@ -20,5 +22,6 @@ module.exports = {
     PRIVATE_VAPID_KEY,
     PORT,
     HOST,
-    URI
+    URI,
+    TOKEN_ADMIN
   }
