@@ -5,17 +5,18 @@ const { getMerchantById } = require("./merchantController")
 const createOrder = async (data) => {
     try {
         // enviar orden
-        const order = new Order(data)
-        await order.save()
-        
+        // const order = new Order(data)
+        // await order.save()
+
         // enviar mensaje
         const textMsg = {
             userName: data.nameUser,
             userPhone: data.phone,
+            total: data.total,
             merchantPhone: data.merchantPhone
         }
         await mensaje(textMsg)
-        return order
+        // return order
     } catch (error) {
         return error.message
     }
