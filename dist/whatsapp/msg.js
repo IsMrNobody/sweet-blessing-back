@@ -80,6 +80,53 @@ const mensaje = async (payload) => {
   }
 }
 
+const homeMsg = async (payload) => {
+  // mensaje simple
+  const data = {
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": `${payload.merchantPhone}`,
+    "type": "template",
+    "template": {
+      "name": "home_msg",
+      "language": {
+        "code": "en"
+      },
+      "components": [
+        {
+          "type": "body",
+          "parameters": [
+            {
+              "type": "text",
+              "text": `${payload.userName}`
+            },
+            {
+              "type": "text",
+              "text": `${payload.email}`
+            },
+            {
+              "type": "text",
+              "text": `${payload.comment}`
+            }
+          ]
+        }
+      ]
+    }
+  }
+
+  try {
+    const enviar = await axios.post('https://graph.facebook.com/v14.0/105724882310760/messages', data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${TOKEN_ADMIN}`
+      }
+    })
+    return enviar
+  } catch (error) {
+    console.log('algo paso', error.message)
+  }
+}
 
 
-module.exports = { mensaje }
+
+module.exports = { mensaje, homeMsg }

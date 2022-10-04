@@ -1,5 +1,12 @@
 const { Router } = require('express')
-const { createOrder, getOrders, getByMerchantId, deleteOrder, getOrderById } = require('../controllers/orderController')
+const {
+    createOrder,
+    getOrders,
+    getByMerchantId,
+    deleteOrder,
+    getOrderById,
+    sendMsg
+} = require('../controllers/orderController')
 const router = Router()
 
 router.get('/', async (req, res) => {
@@ -22,6 +29,15 @@ router.get('/user/:id', async (req, res) => {
 
 router.post("/create", async (req, res) => {
     const order = await createOrder(req.body)
+    if(order){
+        res.status(201).json({data: order})
+    } else {
+        res.status(403).json('algo ocurre > ' + order)
+    }
+})
+
+router.post("/contact", async (req, res) => {
+    const order = await sendMsg(req.body)
     if(order){
         res.status(201).json({data: order})
     } else {

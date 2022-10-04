@@ -1,6 +1,5 @@
 const Order = require("../models/order")
-const { mensaje } = require('../whatsapp/msg')
-const { getMerchantById } = require("./merchantController")
+const { mensaje, homeMsg } = require('../whatsapp/msg')
 
 const createOrder = async (data) => {
     try {
@@ -17,6 +16,23 @@ const createOrder = async (data) => {
         }
         await mensaje(textMsg)
         return order
+    } catch (error) {
+        return error.message
+    }
+}
+
+const sendMsg = async (data) => {
+    try {
+        // enviar mensaje
+        const textMsg = {
+            userName: data.userName,
+            email: data.email,
+            merchantPhone: data.merchantPhone,
+            comment: data.comment
+        }
+        const msg = await homeMsg(textMsg)
+        console.log(msg.data)
+        return msg.data
     } catch (error) {
         return error.message
     }
@@ -66,5 +82,6 @@ module.exports = {
     getOrders,
     getByMerchantId,
     deleteOrder,
-    getOrderById
+    getOrderById,
+    sendMsg
 }
