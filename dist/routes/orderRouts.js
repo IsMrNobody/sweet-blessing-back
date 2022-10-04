@@ -36,7 +36,7 @@ router.post("/create", async (req, res) => {
     }
 })
 
-router.post("/contact", async (req, res) => {
+router.get("/contact", async (req, res) => {
     const order = await sendMsg(req.body)
     if(order){
         res.status(201).json({data: order})
