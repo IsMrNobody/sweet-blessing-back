@@ -50,10 +50,10 @@ const getByMerchantId = (id) => {
   return order
 }
 
-const getOrderById = (id) => {
+const getOrderById = async (id) => {
   // obtener orden por ID
   try {
-    const order = Order.findById(id)
+    const order = await Order.findById(id)
     return order
   } catch (error) {
     return error.message
