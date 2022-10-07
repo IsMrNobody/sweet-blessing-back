@@ -1,11 +1,14 @@
 const axios = require('axios')
 const Order = require("../models/order")
-const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET, HOST } = require('../config')
+const {
+  PAYPAL_API,
+  PAYPAL_API_CLIENT,
+  PAYPAL_API_SECRET,
+  HOST } = require('../config')
 
 let IdPago = ''
 
 const creatOrder = async (req, res) => {
-    console.log('creando orden >', req)
     const order = {
       intent: 'CAPTURE',
       purchase_units: [
@@ -50,7 +53,6 @@ const creatOrder = async (req, res) => {
             Authorization: `Bearer ${access_token}`
           }
         })
-        console.log(response.data)
         IdPago = req.orderId
         res.send(response.data)
     } catch (error) {
@@ -69,10 +71,18 @@ const captureOrder = async (req, res) => {
     }
   })
   // const id = response.data.id
-  const ordenPagada = await Order.findByIdAndUpdate(IdPago, {paid: true})
-  console.log('este es la orden paga')
-  console.log(ordenPagada)
+  await Order.findByIdAndUpdate(IdPago, {paid: true})
   res.redirect(`https://sweet-jesus.netlify.app/paid/${IdPago}`)
+}
+
+const checkPayment = async (req, id) => {
+  try {
+    const pay = await Order.findByIdAndUpdate(id, {paid: req.check})
+    return pay
+  } catch (error) {
+    console.log('algo paso', error.message)
+    return error.message
+  }
 }
 
 const cancelOrder = (req, res) => {
@@ -82,5 +92,6 @@ const cancelOrder = (req, res) => {
 module.exports = {
   creatOrder,
   captureOrder,
-  cancelOrder
+  cancelOrder,
+  checkPayment
 }
