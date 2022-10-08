@@ -60,15 +60,18 @@ const getOrderById = async (id) => {
   }
 }
 
-// const editProduct = async (id, data) => {
-//     try {
-//         await Product.findByIdAndUpdate(id, data)
-//         const productAct = Product.findById({_id: id})
-//         return productAct
-//     } catch (error) {
-//         console.log('no encontrado');
-//     }
-// }
+const editOrder = async (data, id, res) => {
+    try {
+      await Order.findByIdAndUpdate(id, {
+        status: data.status,
+        paid: data.paid
+      })
+      const orderEdit = Order.findById({_id: id})
+        return orderEdit
+    } catch (error) {
+        return error.message
+    }
+}
 
 const deleteOrder = async (id) => {
   try {
@@ -87,5 +90,6 @@ module.exports = {
   getByMerchantId,
   deleteOrder,
   getOrderById,
-  sendMsg
+  sendMsg,
+  editOrder
 }

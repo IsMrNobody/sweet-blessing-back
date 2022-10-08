@@ -5,7 +5,8 @@ const {
   getByMerchantId,
   deleteOrder,
   getOrderById,
-  sendMsg
+  sendMsg,
+  editOrder
 } = require('../controllers/orderController')
 const router = Router()
 
@@ -48,10 +49,10 @@ router.post("/contact", async (req, res) => {
   }
 })
 
-// router.put('/:id', async (req, res) => {
-//     const edit = await editProduct(req.params.id, req.body)
-//     res.status(201).json(edit)
-// })
+router.put('/:id', async (req, res) => {
+    const edit = await editOrder(req.body, req.params.id)
+    res.status(201).json(edit)
+})
 
 router.delete("/:id", async (req, res) => {
   const order = await deleteOrder(req.params.id)
