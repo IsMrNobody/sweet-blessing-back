@@ -28,6 +28,7 @@ const OrderSchema = new Schema({
     active:{ type: Boolean, default: true },
     status: { type: String, default: 'Pendiente' },
     paid: { type: Boolean, default: false },
+    numberRef: String,
     email: { required: true, type: String },
     address: String,
     comments: String,

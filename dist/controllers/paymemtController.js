@@ -77,7 +77,10 @@ const captureOrder = async (req, res) => {
 
 const checkPayment = async (req, id) => {
   try {
-    const pay = await Order.findByIdAndUpdate(id, {paid: req.check})
+    const pay = await Order.findByIdAndUpdate(id, {
+      paid: req.check,
+      numberRef: req.numberRef
+    })
     return pay
   } catch (error) {
     console.log('algo paso', error.message)
