@@ -18,7 +18,10 @@ const localSchema = new Schema({
   description: { type: String, required: true },
   phone: Number,
   pass: String,
-  payment: [method]
+  payment: [method],
+  logo: String,
+  banner: String,
+  slogan: String
 },
   {
     versionKey: false
