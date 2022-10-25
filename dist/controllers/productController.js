@@ -6,6 +6,9 @@ const createProduct = async (data, req) => {
   try {
       const product = new Product(data)
 
+      console.log(data)
+      console.log(req)
+
       if (req) {
         const image = await imgProduct(req.file.tempFilePath)
         product.img = {
