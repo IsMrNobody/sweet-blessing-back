@@ -28,8 +28,8 @@ router.get('/user/:id', async (req, res) => {
 })
 
 router.post("/create-product", async (req, res) => {
-    // console.log(req.body);
-    const product = await createProduct(req.body)
+    // console.log(req.files)
+    const product = await createProduct(req.body, req.files)
     if(product){
         res.status(201).json({data: product})
     } else {

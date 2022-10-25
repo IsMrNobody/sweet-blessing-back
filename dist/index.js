@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const fileUpload = require('express-fileupload');
 const { conectDB } = require('./database/db')
 
 // const payment = require('./routes/paymentRouts')
@@ -15,10 +16,13 @@ app.use(cors({
     origin: '*'
 }))
 
-// app.use(payment);
-// app.use("/", (req, res) => {
-//     res.send('Bienvenido a Jartate-DB')
-// })
+// subida de archivos
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : './uploads'
+}));
+
+
 app.use("/payment", require('./routes/paymentRouts'))
 app.use("/merchant", require('./routes/merchantRouts'))
 app.use("/product", require('./routes/productRouts'))

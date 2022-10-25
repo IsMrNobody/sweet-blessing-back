@@ -15,7 +15,10 @@ const ProductSchema = new Schema({
     price: Number,
     category: String,
     portion: [portion],
-    img: String,
+    img: {
+        public_id: String,
+        url: String
+    },
     ingredients: String
 }, 
 {
