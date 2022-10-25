@@ -40,7 +40,7 @@ const editProduct = async (id, data, req) => {
   try {
     console.log(req)
     if (req) {
-      const image = await imgProduct(req.tempFilePath)
+      const image = await imgProduct(req.file.tempFilePath)
       const product = {
         ...data,
         img: {
