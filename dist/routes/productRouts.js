@@ -38,10 +38,8 @@ router.post("/create-product", async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
-    // const edit = await editProduct(req.params.id, req.body, req.files)
-    // res.status(201).json(edit)
-    console.log(req.files)
-    console.log(req.body)
+    const edit = await editProduct(req.params.id, req.body, req.files)
+    res.status(201).json(edit)
 })
 
 router.delete("/:id", async (req, res) => {
