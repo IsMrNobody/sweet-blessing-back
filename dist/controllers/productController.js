@@ -38,8 +38,9 @@ const getProductByUserId = (id) => {
 
 const editProduct = async (id, data, req) => {
   try {
+    console.log(req)
     if (req) {
-      const image = await imgProduct(req.product.tempFilePath)
+      const image = await imgProduct(req.tempFilePath)
       const product = {
         ...data,
         img: {
