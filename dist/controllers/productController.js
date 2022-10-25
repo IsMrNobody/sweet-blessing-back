@@ -2,12 +2,12 @@ const Product = require("../models/product")
 const { imgProduct } = require('../database/cloudinary')
 
 
-const createProduct = async (data, img) => {  
+const createProduct = async (data, req) => {  
   try {
       const product = new Product(data)
 
-      if (img.product) {
-        const image = await imgProduct(img.product.tempFilePath)
+      if (req) {
+        const image = await imgProduct(req.file.tempFilePath)
         product.img = {
           public_id: image.public_id,
           url: image.secure_url
