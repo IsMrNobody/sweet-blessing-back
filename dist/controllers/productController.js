@@ -42,7 +42,10 @@ const getProductByUserId = (id) => {
 
 const editProduct = async (id, data, req) => {
   try {
-    console.log(req)
+    // console.log(req)
+    const product = await Product.findById(id)
+    await deleteImg(product.img.public_id)
+    
     if (req) {
       const image = await imgProduct(req.file.tempFilePath)
       const product = {
