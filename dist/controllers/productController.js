@@ -1,5 +1,6 @@
 const Product = require("../models/product")
 const { imgProduct } = require('../database/cloudinary')
+const fs = require('fs-extra')
 
 
 const createProduct = async (data, req) => {  
@@ -13,6 +14,8 @@ const createProduct = async (data, req) => {
           public_id: image.public_id,
           url: image.secure_url
         }
+
+        fs.unlink(req.file.tempFilePath)
       }
 
       const pro = await product.save()
@@ -49,6 +52,7 @@ const editProduct = async (id, data, req) => {
           url: image.secure_url
         }
       }
+      fs.unlink(req.file.tempFilePath)
       const productAct = await Product.findByIdAndUpdate(id, product)      
       return productAct
 
