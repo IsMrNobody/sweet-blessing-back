@@ -15,7 +15,7 @@ const createProduct = async (data) => {
       // }
 
       const pro = await product.save()
-      if (!pro) throw new Error(pro)
+      if (!pro._id) throw new Error(pro)
       return pro
   } catch (error) {
       return error.message
