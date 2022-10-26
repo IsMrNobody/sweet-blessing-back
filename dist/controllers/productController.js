@@ -18,6 +18,7 @@ const createProduct = async (data) => {
       return product
   } catch (error) {
       console.log(error.message);
+      return error.message
   }
 }
 
