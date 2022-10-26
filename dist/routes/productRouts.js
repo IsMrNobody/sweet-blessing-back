@@ -29,7 +29,7 @@ router.get('/user/:id', async (req, res) => {
 
 router.post("/create-product", async (req, res) => {
     console.log(req.files)
-    console.log(req.body)
+    console.log(req.body.data)
     const product = await createProduct(req.body, req.files)
     if(product){
         res.status(201).json(product)
