@@ -6,10 +6,11 @@ const createProduct = async (data, req) => {
   try {
       const product = new Product(data)
 
+      console.log(data.file)
       console.log(req)
-      if (req.file) {
+      if (data.file) {
         console.log('si hay')
-        const image = await imgProduct(req.file.tempFilePath)
+        const image = await imgProduct(data.file.tempFilePath)
         product.img = {
           public_id: image.public_id,
           url: image.secure_url
