@@ -1,5 +1,5 @@
 const Product = require("../models/product")
-const { imgProduct } = require('../database/cloudinary')
+const { imgProduct, deleteImg } = require('../database/cloudinary')
 const fs = require('fs-extra')
 
 
@@ -15,7 +15,7 @@ const createProduct = async (data, req) => {
           url: image.secure_url
         }
 
-        fs.unlink(req.file.tempFilePath)
+        await fs.unlink(req.file.tempFilePath)
       }
 
       const pro = await product.save()
@@ -52,7 +52,7 @@ const editProduct = async (id, data, req) => {
           url: image.secure_url
         }
       }
-      fs.unlink(req.file.tempFilePath)
+      await fs.unlink(req.file.tempFilePath)
       const productAct = await Product.findByIdAndUpdate(id, product)      
       return productAct
 
@@ -71,6 +71,8 @@ const deleteProduct = async (id) => {
   try {
     const product = await Product.findByIdAndDelete(id)
     if (!product) throw new Error('no existe')
+
+    await deleteImg(product.img.public_id)
     return product
   } catch (error) {
     console.log(error.message)

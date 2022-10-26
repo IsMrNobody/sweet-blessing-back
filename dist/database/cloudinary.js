@@ -13,6 +13,11 @@ const imgProduct = async (filePath) => {
   })
 }
 
+const deleteImg = async (id) => {
+  return await cloudinary.uploader.destroy(id)
+}   
+
 module.exports = {
-  imgProduct
+  imgProduct,
+  deleteImg
 }
