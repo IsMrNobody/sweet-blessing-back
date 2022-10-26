@@ -6,13 +6,14 @@ const createProduct = async (data) => {
   try {
       const product = new Product(data)
 
-      // if (req) {
-      //   const image = await imgProduct(req.file.tempFilePath)
-      //   product.img = {
-      //     public_id: image.public_id,
-      //     url: image.secure_url
-      //   }
-      // }
+      if (data.file) {
+        console.log(data.file)
+        // const image = await imgProduct(req.file.tempFilePath)
+        // product.img = {
+        //   public_id: image.public_id,
+        //   url: image.secure_url
+        // }
+      }
 
       const pro = await product.save()
       return pro
