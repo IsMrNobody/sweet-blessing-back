@@ -4,18 +4,17 @@ const { imgProduct } = require('../database/cloudinary')
 
 const createProduct = async (data, req) => {  
   try {
-      console.log(data)
       const product = new Product(data)
 
       // console.log(req)
-      if (req.file) {
-        console.log('si hay')
-        const image = await imgProduct(req.file.tempFilePath)
-        product.img = {
-          public_id: image.public_id,
-          url: image.secure_url
-        }
-      }
+      // if (req.file) {
+      //   console.log('si hay')
+      //   const image = await imgProduct(req.file.tempFilePath)
+      //   product.img = {
+      //     public_id: image.public_id,
+      //     url: image.secure_url
+      //   }
+      // }
 
       const pro = await product.save()
       return pro
