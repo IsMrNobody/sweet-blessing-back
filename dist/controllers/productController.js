@@ -4,7 +4,8 @@ const { imgProduct } = require('../database/cloudinary')
 
 const createProduct = async (data, req) => {  
   try {
-      const product = new Product(data)
+      const parse = JSON.parse(data)
+      const product = new Product(parse)
 
       if (req.file) {
         const image = await imgProduct(req.file.tempFilePath)
