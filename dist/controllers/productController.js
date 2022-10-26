@@ -2,17 +2,18 @@ const Product = require("../models/product")
 const { imgProduct } = require('../database/cloudinary')
 
 
-const createProduct = async (data) => {  
+const createProduct = async (data, req) => {  
   try {
       const product = new Product(data)
 
-      console.log(data)
-      if (data.file) {
-        // const image = await imgProduct(req.file.tempFilePath)
-        // product.img = {
-        //   public_id: image.public_id,
-        //   url: image.secure_url
-        // }
+      console.log(req)
+      if (req.file) {
+        console.log('si hay')
+        const image = await imgProduct(req.file.tempFilePath)
+        product.img = {
+          public_id: image.public_id,
+          url: image.secure_url
+        }
       }
 
       const pro = await product.save()

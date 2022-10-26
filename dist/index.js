@@ -19,7 +19,10 @@ app.use(cors({
 // subida de archivos
 app.use(fileUpload({
     useTempFiles : true,
-    tempFileDir : './uploads'
+    tempFileDir : './uploads',
+    limits: {
+        fileSize: 1000000,
+    }
 }));
 
 
