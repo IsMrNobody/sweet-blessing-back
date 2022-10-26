@@ -6,7 +6,7 @@ const createProduct = async (data, req) => {
   try {
       const product = new Product(data)
 
-      console.log(req)
+      console.log(req.file)
       if (req.file) {
         console.log('si hay')
         const image = await imgProduct(req.file.tempFilePath)
@@ -14,6 +14,7 @@ const createProduct = async (data, req) => {
           public_id: image.public_id,
           url: image.secure_url
         }
+        console.log(image)
       }
 
       const pro = await product.save()
