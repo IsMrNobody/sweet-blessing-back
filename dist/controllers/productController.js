@@ -14,10 +14,10 @@ const createProduct = async (data) => {
       //   }
       // }
 
-      await product.save()
-      return product
+      const pro = await product.save()
+      console.log(pro)
+      return pro
   } catch (error) {
-      console.log(error.message);
       return error.message
   }
 }
