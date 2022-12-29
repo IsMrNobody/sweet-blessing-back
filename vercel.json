@@ -1,0 +1,7 @@
+{
+  "build": {
+    "cmd": "npm install & npm run start"
+  },
+  "src": "dist",
+  "dest": "dist"
+}
