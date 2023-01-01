@@ -30,23 +30,22 @@ const getProducts = () => {
   return product
 }
 
-const getProductById = (id) => {
-  const product = Product.find({ _id: id })
+const getProductById = async (id) => {
+  const product = await Product.find({_id: id})
   return product
 }
 
-const getProductByUserId = (id) => {
-  const product = Product.find({ userId: id })
+const getProductByUserId = async (id) => {
+  const product = await Product.find({ userId: id })
   return product
 }
 
 const editProduct = async (id, data, req) => {
-  try {
-    // console.log(req)
-    const product = await Product.findById(id)
-    await deleteImg(product.img.public_id)
-    
+  try {    
     if (req) {
+      const foto = await Product.findById(id)
+      await deleteImg(foto.img.public_id)
+
       const image = await imgProduct(req.file.tempFilePath)
       const product = {
         ...data,
