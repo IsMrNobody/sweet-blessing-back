@@ -38,7 +38,7 @@ router.post("/create-product", async (req, res) => {
     }
 })
 
-router.post('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const edit = await editProduct(req.params.id, req.body, req.files)
     res.status(201).json(edit)
 })
