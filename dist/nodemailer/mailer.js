@@ -14,12 +14,16 @@ const sendEmail = (data) => {
       });
 
       // Definir el contenido del correo electrónico
+      const str = data.id.toString()
+      const id = str.substring(str.length - 6)
+      console.log('este es id', id)
+
       const mailOptions = {
         from: 'webicultores@gmail.com',
         to: `${data.merchantEmail}`,
         subject: 'Nuevo pedido en la tienda',
         // text: `Se ha recibido un nuevo pedido en la tienda de: ${data.userName} Por favor, revisa la aplicación para más detalles.`,
-        html: `<p>Se ha recibido un nuevo pedido de: ${data.userName} </p>
+        html: `<p>Se ha recibido un nuevo pedido por ${data.userName} Ref: ${id} </p>
         <p>Visita la aplicación para mas detalle: https://pizzaroma.netlify.app/admin</p>
         <img width="250" src="https://res.cloudinary.com/dku13l2ep/image/upload/v1681322363/JARTATE/Ciudad/Anaco/pizza%20roma/moto_roma_vrflo9.png"/>
         `
@@ -32,6 +36,7 @@ const sendEmail = (data) => {
           return error
         } else {
         console.log(`Correo electrónico enviado: ${info.response}`);
+        return info.response
         }
       });
 }

@@ -17,7 +17,8 @@ const createOrder = async (data) => {
       total: data.total,
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
-      delivery: data.delivery
+      delivery: data.delivery,
+      id: order._id
     }
     if(order) {
       const email = sendEmail(textMsg)
