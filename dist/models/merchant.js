@@ -17,6 +17,7 @@ const localSchema = new Schema({
   tag: { type: String, required: true, unique: true, trim: true },
   active: { type: Boolean, default: false },
   description: { type: String, required: true },
+  email: String,
   phone: Number,
   pass: String,
   payment: [method],
