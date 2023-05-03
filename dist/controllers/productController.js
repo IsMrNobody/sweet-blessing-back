@@ -5,8 +5,8 @@ const fs = require('fs-extra')
 
 const createProduct = async (data, req) => {  
   try {
-      const parse = JSON.parse(data)
-      const product = new Product(parse)
+    const parse = JSON.parse(data)
+    const product = new Product(parse)
 
       if (req.file) {
         const image = await imgProduct(req.file.tempFilePath)
@@ -16,12 +16,15 @@ const createProduct = async (data, req) => {
         }
 
         await fs.unlink(req.file.tempFilePath)
-      }
-
+      }      
       const pro = await product.save()
+      
+      console.log(pro);
+
       return pro
   } catch (error) {
-      return error.message
+    console.log('algo paso', error.message);
+    return error.message
   }
 }
 

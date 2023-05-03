@@ -8,7 +8,7 @@ const portion = new Schema({
 })
 
 const ProductSchema = new Schema({
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     active:{ type: Boolean, default: false },
     userId: { required: true, type: String },
     description: String,

@@ -31,7 +31,7 @@ const OrderSchema = new Schema({
     status: { type: String, default: 'Pendiente' },
     paid: { type: Boolean, default: false },
     numberRef: String,
-    email: { required: true, type: String },
+    userEmail: { required: true, type: String },
     address: String,
     comments: String,
     deliveryDate: String,

@@ -69,7 +69,7 @@ const mensaje = async (payload) => {
     }
   }
   try {
-    const enviar = await axios.post('https://graph.facebook.com/v14.0/105724882310760/messages', data, {
+    const enviar = await axios.post('https://graph.facebook.com/v16.0/105724882310760/messages', data, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${TOKEN_ADMIN}`
@@ -115,15 +115,17 @@ const homeMsg = async (payload) => {
   }
 
   try {
-    const enviar = await axios.post('https://graph.facebook.com/v14.0/105724882310760/messages', data, {
+    const enviar = await axios.post('https://graph.facebook.com/v16.0/105724882310760/messages', data, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${TOKEN_ADMIN}`
       }
     })
+    // console.log(enviar);
     return enviar
   } catch (error) {
-    console.log('algo paso', error.message)
+    console.log('algo paso wasap', error.message)
+    return error
   }
 }
 

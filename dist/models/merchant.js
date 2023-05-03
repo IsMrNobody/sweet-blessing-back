@@ -14,6 +14,7 @@ const method = new Schema({
 
 const localSchema = new Schema({
   name: { type: String, required: true, unique: true, trim: true },
+  tag: { type: String, required: true, unique: true, trim: true },
   active: { type: Boolean, default: false },
   description: { type: String, required: true },
   phone: Number,

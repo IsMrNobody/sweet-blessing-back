@@ -32,5 +32,5 @@ app.use("/product", require('./routes/productRouts'))
 app.use("/order", require('./routes/orderRouts'))
 // app.use(webPushRouts);
 
-app.listen(process.env.PORT || 3001);
+app.listen(process.env.PORT || 3002);
 console.log("server activo")

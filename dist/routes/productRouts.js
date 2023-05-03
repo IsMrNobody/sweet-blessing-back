@@ -28,10 +28,8 @@ router.get('/user/:id', async (req, res) => {
 })
 
 router.post("/create-product", async (req, res) => {
-    console.log(req.files)
-    console.log(req.body.data)
     const product = await createProduct(req.body.data, req.files)
-    if(product){
+    if(product.name){
         res.status(201).json(product)
     } else {
         res.status(403).json('algo ocurre > ' + product)

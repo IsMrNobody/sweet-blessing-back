@@ -43,7 +43,7 @@ router.post("/create", async (req, res) => {
 router.post("/contact", async (req, res) => {
   const order = await sendMsg(req.body)
   if (order) {
-    res.status(201).json({ data: order })
+    res.status(201).json(order)
   } else {
     res.status(403).json('algo ocurre > ' + order)
   }
