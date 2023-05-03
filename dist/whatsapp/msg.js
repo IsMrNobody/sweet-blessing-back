@@ -61,7 +61,7 @@ const mensaje = async (payload) => {
             },
             {
               "type": "text",
-              "text": `${payload.userPhone}`
+              "text": `${payload.phone}`
             }
           ]
         }
@@ -76,7 +76,7 @@ const mensaje = async (payload) => {
       }
     })
   } catch (error) {
-    console.log('algo paso', error.message)
+    console.log('algo paso al enviar msj', error.message)
   }
 }
 
@@ -102,7 +102,7 @@ const homeMsg = async (payload) => {
             },
             {
               "type": "text",
-              "text": `${payload.email}`
+              "text": `${payload.userEmail}`
             },
             {
               "type": "text",

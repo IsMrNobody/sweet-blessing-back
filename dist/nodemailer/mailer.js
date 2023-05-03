@@ -3,7 +3,6 @@ const nodemailer = require('nodemailer');
 
 // Configurar el transporte de correo electrónico
 const sendEmail = (data) => {
-    console.log(data);
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -30,6 +29,7 @@ const sendEmail = (data) => {
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(`Error al enviar el correo electrónico: ${error}`);
+          return error
         } else {
         console.log(`Correo electrónico enviado: ${info.response}`);
         }

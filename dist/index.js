@@ -33,4 +33,4 @@ app.use("/order", require('./routes/orderRouts'))
 // app.use(webPushRouts);
 
 app.listen(process.env.PORT || 3002);
-console.log("server activo")
+console.log("server activo en 3002")

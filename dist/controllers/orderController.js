@@ -3,6 +3,7 @@ const { sendEmail } = require('../nodemailer/mailer')
 const { mensaje, homeMsg } = require('../whatsapp/msg')
 
 const createOrder = async (data) => {
+  console.log(data)
   try {
     // enviar orden
     const order = new Order(data)
@@ -12,16 +13,17 @@ const createOrder = async (data) => {
     const textMsg = {
       userName: data.nameUser,
       userEmail: data.userEmail,
-      phone: data.userPhone,
+      phone: data.phone,
       total: data.total,
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
       delivery: data.delivery
     }
-    await mensaje(textMsg)
     if(order) {
-      sendEmail(textMsg)
+      const email = sendEmail(textMsg)
+      console.log(email)
     }
+    await mensaje(textMsg)
     return order
   } catch (error) {
     return error.message
