@@ -11,8 +11,8 @@ const createOrder = async (data) => {
     // enviar mensaje
     const textMsg = {
       userName: data.nameUser,
-      userPhone: data.userPhone,
       userEmail: data.userEmail,
+      phone: data.userPhone,
       total: data.total,
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
