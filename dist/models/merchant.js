@@ -21,6 +21,8 @@ const localSchema = new Schema({
   phone: Number,
   pass: String,
   payment: [method],
+  address: String,
+  city: String,
   logo: String,
   banner: String,
   slogan: String

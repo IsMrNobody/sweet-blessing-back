@@ -33,10 +33,11 @@ router.get('/user/:id', async (req, res) => {
 
 router.post("/create", async (req, res) => {
   const order = await createOrder(req.body)
+  // console.log('ruta order', order);
   if (order) {
     res.status(201).json({ data: order })
   } else {
-    res.status(403).json('algo ocurre > ' + order)
+    res.status(403).json('algo ocurre ruta > ' + order)
   }
 })
 

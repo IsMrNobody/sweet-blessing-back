@@ -23,8 +23,8 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post("/create-local", async (req, res) => {
-  console.log(req.body);
   const merchant = await createMerchant(req.body)
+  console.log(merchant);
   if (merchant) {
     res.status(201).json({ data: merchant })
   } else {

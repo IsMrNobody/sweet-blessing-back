@@ -13,59 +13,34 @@ const mensaje = async (payload) => {
   //       "emoji": "🤩"
   //     }
   //   }
-
-  // media mensaje
-  // const data = {
-  //     "messaging_product": "whatsapp",
-  //     "recipient_type": "individual",
-  //     "to": `${payload.merchantPhone}`,
-  //     "type": "image",
-  //     "image": {
-  //         "link" : "https://phantom-marca.unidadeditorial.es/37375543cb60729f952bf47a9d5cddca/resize/1320/f/jpg/assets/multimedia/imagenes/2021/05/26/16220329540186.jpg"
-  //     }
-  //   }
-
-  // mensaje simple
-  // const data = {
-  //     "messaging_product": "whatsapp",
-  //     "recipient_type": "individual",
-  //     "to": `${payload.merchantPhone}`,
-  //     "type": "text",
-  //     "text": {
-  //       "preview_url": false,
-  //       "body": `${"🙌 Nuevo pedido de: " + `${payload.userName}` + "  " +
-  //         " Contacto: "  + payload.userPhone}`
-  //     }
-  //   }
   const data = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
     "to": `${payload.merchantPhone}`,
-    "type": "template",
-    "template": {
-      "name": "order_template",
-      "language": {
-        "code": "en"
+    "type": "interactive",
+    "interactive": {
+      "type": "button",
+      "header": {
+        "type": "text",
+        "text": `Pedido nuevo`
       },
-      "components": [
-        {
-          "type": "body",
-          "parameters": [
-            {
-              "type": "text",
-              "text": `${payload.userName}`
-            },
-            {
-              "type": "text",
-              "text": `${payload.total}  💸`
-            },
-            {
-              "type": "text",
-              "text": `${payload.phone}`
+      "body": {
+        "text": `Contacto: ${payload.userName} +${payload.phone}`
+      },
+      "footer": {
+        "text": `Revisa tu historial http://google.com/`
+      },
+      "action": {
+        "buttons": [
+          {
+            "type": "reply",
+            "reply": {
+              "id": "unique-postback-id",
+              "title": "✔"
             }
-          ]
-        }
-      ]
+          }
+        ] 
+      }
     }
   }
   try {
@@ -75,8 +50,11 @@ const mensaje = async (payload) => {
         Authorization: `Bearer ${TOKEN_ADMIN}`
       }
     })
+    // console.log('whatsap enviar', enviar.data);
+    return enviar
   } catch (error) {
-    console.log('algo paso al enviar msj', error.message)
+    console.log('algo paso al enviar wa', error.message)
+    return error
   }
 }
 
@@ -85,33 +63,32 @@ const homeMsg = async (payload) => {
   const data = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
-    "to": `${payload.merchantPhone}`,
-    "type": "template",
-    "template": {
-      "name": "home_msg",
-      "language": {
-        "code": "en"
+    "to" : `${payload.merchantPhone}`,
+    "type": "interactive",
+    "interactive": {
+      "type": "button",
+      "header": {
+        "type": "text",
+        "text": `${payload.userName}`
       },
-      "components": [
-        {
-          "type": "body",
-          "parameters": [
-            {
-              "type": "text",
-              "text": `${payload.userName}`
-            },
-            {
-              "type": "text",
-              "text": `${payload.userEmail}`
-            },
-            {
-              "type": "text",
-              "text": `${payload.comment}`
+      "body": {
+        "text": `${payload.comment}`
+      },
+      "footer": {
+        "text": `Email: ${payload.userEmail}`
+      },
+      "action": {
+        "buttons": [
+          {
+            "type": "reply",
+            "reply": {
+              "id": "unique-postback-id",
+              "title": "✔" 
             }
-          ]
-        }
-      ]
+          }
+        ] 
     }
+  }
   }
 
   try {

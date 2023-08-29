@@ -3,7 +3,7 @@ const { sendEmail } = require('../nodemailer/mailer')
 const { mensaje, homeMsg } = require('../whatsapp/msg')
 
 const createOrder = async (data) => {
-  console.log(data)
+  // console.log(data)
   try {
     // enviar orden
     const order = new Order(data)
@@ -18,15 +18,17 @@ const createOrder = async (data) => {
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
       delivery: data.delivery,
-      id: order._id
+      // id: order._id
     }
-    if(order) {
-      const email = sendEmail(textMsg)
-      console.log(email)
-    }
-    await mensaje(textMsg)
+    // if(order) {
+    //   const email = sendEmail(textMsg)
+    //   console.log(email)
+    // }
+    const wa = await mensaje(textMsg)
+    console.log('controler', wa.data);
     return order
   } catch (error) {
+    console.log('error controler', error);
     return error.message
   }
 }
@@ -36,14 +38,14 @@ const sendMsg = async (data) => {
     // enviar mensaje
     const textMsg = {
       userName: data.userName,
-      email: data.email,
+      userEmail: data.userEmail,
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
       comment: data.comment
     }
     const msg = await homeMsg(textMsg)
     // sendEmail(data)
-    console.log(msg.data)
+    // console.log(msg.data)
     return msg.data
   } catch (error) {
     console.log(error.message);
