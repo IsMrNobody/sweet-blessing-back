@@ -12,6 +12,23 @@ const method = new Schema({
   img: String
 })
 
+const promo = new Schema({
+  img: String,
+  title: String,
+  description: String
+})
+
+const history = new Schema({
+  img: String
+})
+
+const colors = new Schema({
+  primary: String,
+  secondary: String,
+  tercero: String,
+  cuarto: String
+})
+
 const localSchema = new Schema({
   name: { type: String, required: true, unique: true, trim: true },
   tag: { type: String, required: true, unique: true, trim: true },
@@ -21,11 +38,14 @@ const localSchema = new Schema({
   phone: Number,
   pass: String,
   payment: [method],
+  promos: [promo],
+  history: [history],
   address: String,
   city: String,
   logo: String,
   banner: String,
-  slogan: String
+  slogan: String,
+  palette: colors
 },
   {
     versionKey: false
