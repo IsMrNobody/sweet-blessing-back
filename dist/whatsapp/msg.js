@@ -13,47 +13,81 @@ const mensaje = async (payload) => {
   //       "emoji": "🤩"
   //     }
   //   }
+  // const data = {
+  //   "messaging_product": "whatsapp",
+  //   "recipient_type": "individual",
+  //   "to": `${payload.merchantPhone}`,
+  //   "type": "interactive",
+  //   "interactive": {
+  //     "type": "button",
+  //     "header": {
+  //       "type": "text",
+  //       "text": `Pedido nuevo`
+  //     },
+  //     "body": {
+  //       "text": `Contacto: ${payload.userName} +${payload.phone}`
+  //     },
+  //     "footer": {
+  //       "text": `Revisa tu historial http://google.com/`
+  //     },
+  //     "action": {
+  //       "buttons": [
+  //         {
+  //           "type": "reply",
+  //           "reply": {
+  //             "id": "unique-postback-id",
+  //             "title": "✔"
+  //           }
+  //         }
+  //       ] 
+  //     }
+  //   }
+  // }
   const data = {
     "messaging_product": "whatsapp",
     "recipient_type": "individual",
     "to": `${payload.merchantPhone}`,
-    "type": "interactive",
-    "interactive": {
-      "type": "button",
-      "header": {
-        "type": "text",
-        "text": `Pedido nuevo`
+    "type": "template",
+    "template": {
+      "name": "neworder",
+      "language": {
+        "code": "en"
       },
-      "body": {
-        "text": `Contacto: ${payload.userName} +${payload.phone}`
-      },
-      "footer": {
-        "text": `Revisa tu historial http://google.com/`
-      },
-      "action": {
-        "buttons": [
-          {
-            "type": "reply",
-            "reply": {
-              "id": "unique-postback-id",
-              "title": "✔"
+      "components": [
+        {
+          "type": "body",
+          "parameters": [
+            {
+              "type": "text",
+              "text": payload.userName
+            },
+            {
+              "type": "text",
+              "text": payload.total
+            },
+            {
+              "type": "text",
+              "text": payload.phone
             }
-          }
-        ] 
-      }
+          ]
+        }
+      ]
     }
   }
+  // console.log('payload', payload);
+  
   try {
+    // console.log('Datos a enviar:', JSON.stringify(data, null, 2));
     const enviar = await axios.post('https://graph.facebook.com/v16.0/105724882310760/messages', data, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${TOKEN_ADMIN}`
       }
     })
-    // console.log('whatsap enviar', enviar.data);
+    console.log('whatsap enviar', enviar.data);
     return enviar
   } catch (error) {
-    console.log('algo paso al enviar wa', error.message)
+    console.log('algo paso al enviar was', error.message)
     return error
   }
 }

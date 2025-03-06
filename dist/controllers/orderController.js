@@ -3,7 +3,7 @@ const { sendEmail } = require('../nodemailer/mailer')
 const { mensaje, homeMsg } = require('../whatsapp/msg')
 
 const createOrder = async (data) => {
-  // console.log(data)
+  console.log(data)
   try {
     // enviar orden
     const order = new Order(data)
