@@ -36,7 +36,7 @@ const OrderSchema = new Schema({
     comments: String,
     deliveryDate: String,
     delivery: Boolean,
-    paymentMethod: String,
+    paymentMethod: Object,
     floor: String,
     house: String,
     phone: String,

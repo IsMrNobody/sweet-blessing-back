@@ -13,6 +13,7 @@ const ProductSchema = new Schema({
     userId: { required: true, type: String },
     description: String,
     price: Number,
+    stock: Number,
     category: String,
     portion: [portion],
     img: {
