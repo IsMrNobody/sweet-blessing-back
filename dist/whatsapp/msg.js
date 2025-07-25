@@ -107,7 +107,7 @@ const homeMsg = async (payload) => {
       type: "button",
       header: {
         type: "text",
-        text: `${payload.userName - payload.total}`,
+        text: `${payload.userName + " " + payload.total}`,
       },
       body: {
         text: `${payload.comments}`,
