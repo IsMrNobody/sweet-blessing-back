@@ -113,7 +113,7 @@ const homeMsg = async (payload) => {
         text: `${payload.comments}`,
       },
       footer: {
-        text: `Pedido de ${payload.userName}`,
+        text: `Pedido de ${payload.merchantName}`,
       },
       action: {
         buttons: [
