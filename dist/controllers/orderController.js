@@ -1,13 +1,13 @@
-const Order = require("../models/order")
-const { sendEmail } = require('../nodemailer/mailer')
-const { mensaje, homeMsg } = require('../whatsapp/msg')
+const Order = require("../models/order");
+const { sendEmail } = require("../nodemailer/mailer");
+const { mensaje, homeMsg, simpleMsg } = require("../whatsapp/msg");
 
 const createOrder = async (data) => {
-  console.log(data)
+  console.log(data);
   try {
     // enviar orden
-    const order = new Order(data)
-    await order.save()
+    const order = new Order(data);
+    await order.save();
 
     // enviar mensaje
     const textMsg = {
@@ -18,20 +18,21 @@ const createOrder = async (data) => {
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
       delivery: data.delivery,
+      comments: data.comments,
       // id: order._id
-    }
+    };
     // if(order) {
     //   const email = sendEmail(textMsg)
     //   console.log(email)
     // }
-    const wa = await mensaje(textMsg)
-    console.log('controler', wa.data);
-    return order
+    const wa = await homeMsg(textMsg);
+    console.log("controler", wa.data);
+    return wa.data;
   } catch (error) {
-    console.log('error controler', error);
-    return error.message
+    console.log("error controler", error);
+    return error.message;
   }
-}
+};
 
 const sendMsg = async (data) => {
   try {
@@ -41,63 +42,63 @@ const sendMsg = async (data) => {
       userEmail: data.userEmail,
       merchantPhone: data.merchantPhone,
       merchantEmail: data.merchantEmail,
-      comment: data.comment
-    }
-    const msg = await homeMsg(textMsg)
+      comment: data.comment,
+    };
+    const msg = await simpleMsg(textMsg);
     // sendEmail(data)
     // console.log(msg.data)
-    return msg.data
+    return msg.data;
   } catch (error) {
     console.log(error.message);
-    return error
+    return error;
   }
-}
+};
 
 const getOrders = () => {
   // obtener todas las ordenes
-  const orders = Order.find()
-  return orders
-}
+  const orders = Order.find();
+  return orders;
+};
 
 const getByMerchantId = (id) => {
   // obtener orden por merchant-ID
-  const order = Order.find({ merchantId: id })
-  return order
-}
+  const order = Order.find({ merchantId: id });
+  return order;
+};
 
 const getOrderById = async (id) => {
   // obtener orden por ID
   try {
-    const order = await Order.findById(id)
-    return order
+    const order = await Order.findById(id);
+    return order;
   } catch (error) {
-    return error.message
+    return error.message;
   }
-}
+};
 
 const editOrder = async (data, id, res) => {
-    try {
-      await Order.findByIdAndUpdate(id, {
-        status: data.status,
-        paid: data.paid
-      })
-      const orderEdit = Order.findById({_id: id})
-        return orderEdit
-    } catch (error) {
-        return error.message
-    }
-}
+  try {
+    await Order.findByIdAndUpdate(id, {
+      status: data.status,
+      paid: data.paid,
+    });
+    const orderEdit = Order.findById({ _id: id });
+    return orderEdit;
+  } catch (error) {
+    return error.message;
+  }
+};
 
 const deleteOrder = async (id) => {
   try {
-    const order = await Order.findByIdAndDelete(id)
-    if (!order) throw new Error('no existe')
-    return order
+    const order = await Order.findByIdAndDelete(id);
+    if (!order) throw new Error("no existe");
+    return order;
   } catch (error) {
-    console.log(error.message)
-    return error.message
+    console.log(error.message);
+    return error.message;
   }
-}
+};
 
 module.exports = {
   createOrder,
@@ -106,5 +107,5 @@ module.exports = {
   deleteOrder,
   getOrderById,
   sendMsg,
-  editOrder
-}
+  editOrder,
+};
