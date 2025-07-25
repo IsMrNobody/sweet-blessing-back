@@ -19,6 +19,7 @@ const createOrder = async (data) => {
       merchantEmail: data.merchantEmail,
       delivery: data.delivery,
       comments: data.comments,
+      merchantName: data.merchantName,
       // id: order._id
     };
     // if(order) {
