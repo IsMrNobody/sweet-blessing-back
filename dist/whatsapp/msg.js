@@ -107,13 +107,13 @@ const homeMsg = async (payload) => {
       type: "button",
       header: {
         type: "text",
-        text: `${payload.userName}`,
+        text: `${payload.userName - payload.total}`,
       },
       body: {
         text: `${payload.comments}`,
       },
       footer: {
-        text: `Pedido de ${payload.merchantName}`,
+        text: `Pedido para ${payload.merchantName}`,
       },
       action: {
         buttons: [
